@@ -43,11 +43,11 @@ Response:
 
 - **[GET] /get**
 Takes one compulsory query
-id - /get?id=your_id
+id - */get?id=your_id*
 
-/get returns every object in the store by default
+*/get* returns every object in the store by default
 Optional ids:
-key - /get?id=your_id&key=your_key 
+key - */get?id=your_id&key=your_key* 
 Returns an object with that key if it exists, else returns an empty map
 
 Response: 
