@@ -26,9 +26,9 @@ Takes an id, key and a value
 Input:
 ```json 
 {
-  "id": '...',
-  "key": '...',
-  "value": '...'
+  "id": "...",
+  "key": "...",
+  "value": "..."
 
 }
 ```
@@ -36,7 +36,7 @@ Input:
 Response:
 ```json
 {
-  "message": '...',
+  "message": "...",
   "status": 200
 }
 ```
@@ -53,8 +53,8 @@ Returns an object with that key if it exists, else the key/value keys will be em
 Response: 
 ```json
 {
-  "message": '...',
+  "message": "...",
   "status": 200,
-  "objects": {"key": '...', "value": '...'}
+  "objects": {"key": "...", "value": "..."}
 }
 ```
