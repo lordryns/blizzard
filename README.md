@@ -58,3 +58,29 @@ Response:
   "objects": {"key": "...", "value": "..."}
 }
 ```
+
+- **[POST] /delete**
+Deletes any object with the specified key
+
+Input:
+```json 
+{
+  "id": "...",
+  "key": "..."
+}
+```
+Response:
+```json
+{
+  "message": "...",
+  "status": 200
+}
+```
+Why is there no update route?
+Well that's because we already have one, well sort of, the /add route replaces whatever whatever existing route uses that key so use it carefully so you don't overwrite your data.
+
+
+Want to contribute?
+Find me on X (twitter) or Discord @lordryns
+
+Happy building!

@@ -68,3 +68,17 @@ func (storage *Storage) Get(id, key string) (map[string]StoreObject, error) {
 		return userStore.Store, nil
 	}
 }
+
+func (storage *Storage) Delete(id, key string) bool {
+	mutex.Lock()
+	var userStore, ok = storage.Pool[id]
+
+	if !ok {
+		mutex.Unlock()
+		return false
+	}
+
+	delete(userStore.Store, key)
+	mutex.Unlock()
+	return true
+}

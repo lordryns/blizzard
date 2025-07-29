@@ -17,5 +17,6 @@ func main() {
 	router.POST("/create_store", controller.CreateRoute)
 	router.POST("/add", controller.AddRoute)
 	router.GET("/get", controller.GetRoute)
+	router.POST("/delete", controller.DeleteRoute)
 	router.Run()
 }

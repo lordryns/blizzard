@@ -10,8 +10,8 @@ def create_store():
 def add(id: str):
     query = requests.post(base_url + "/add", json={
         "id": id,
-        "key": "age",
-        "value": "19"
+        "key": "name",
+        "value": "David"
     })
     print(query.json())
 
@@ -22,4 +22,12 @@ def get(id: str, key: str = ""):
     print(query.json())
 
 
-get("b237c06d-f67a-460e-99de-b668f5fb74b1")
+def delete(id: str, key: str):
+    query = requests.post(base_url + "/delete", json={
+        "id": id,
+        "key": "age"
+    })
+    print(query.json())
+
+
+get("7fa41e00-062b-4723-bba2-26af1092bcf1")

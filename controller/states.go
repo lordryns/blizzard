@@ -107,3 +107,36 @@ func GetRoute(ctx *gin.Context) {
 	})
 
 }
+
+func DeleteRoute(ctx *gin.Context) {
+	type Payload struct {
+		Id  string `json:"id"`
+		Key string `json:"key"`
+	}
+
+	var payload Payload
+	if err := ctx.BindJSON(&payload); err != nil {
+		ctx.IndentedJSON(http.StatusBadRequest, gin.H{
+			"message": "Malformed json, use id, key instead.",
+			"status":  http.StatusBadRequest,
+		})
+
+		return
+	}
+
+	if !store.Delete(payload.Id, payload.Key) {
+		ctx.IndentedJSON(http.StatusBadRequest, gin.H{
+			"message": "No store with that id!",
+			"status":  http.StatusBadRequest,
+		})
+
+		return
+
+	}
+
+	ctx.IndentedJSON(http.StatusOK, gin.H{
+		"message": "Object deleted successfully!",
+		"status":  http.StatusOK,
+	})
+
+}
