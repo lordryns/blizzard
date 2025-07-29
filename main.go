@@ -1,20 +1,20 @@
 package main
 
 import (
+	"blizzard/controller"
 	"github.com/gin-gonic/gin"
 	"net/http"
-  "blizzard/controller"
 )
 
 func main() {
 	router := gin.Default()
 	router.GET("/", func(ctx *gin.Context) {
 		ctx.IndentedJSON(http.StatusOK, gin.H{
-			"message": "Hello World!",
+			"message": "Hello from Blizzard!",
 		})
 	})
 
-	router.POST("/create", controller.CreateRoute)
+	router.POST("/create_store", controller.CreateRoute)
+	router.POST("/add", controller.AddRoute)
 	router.Run()
 }
-

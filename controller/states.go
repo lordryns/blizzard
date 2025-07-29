@@ -2,6 +2,7 @@ package controller
 
 import (
 	"blizzard/storage"
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 	"net/http"
@@ -38,4 +39,41 @@ func CreateRoute(ctx *gin.Context) {
 		"id":      id,
 	})
 
+}
+
+func AddRoute(ctx *gin.Context) {
+	type Payload struct {
+		Id    string `json:"id"`
+		Key   string `json:"key"`
+		Value string `json:"value"`
+	}
+
+	var payload Payload
+	if err := ctx.BindJSON(&payload); err != nil {
+		ctx.IndentedJSON(http.StatusBadRequest, gin.H{
+			"message": "Malformed json, use id, key, value instead.",
+			"status":  http.StatusBadRequest,
+		})
+
+		return
+	}
+
+	var obj = storage.StoreObject{Key: payload.Key, Value: payload.Value}
+	var res = store.Add(payload.Id, obj)
+
+	if !res {
+		ctx.IndentedJSON(http.StatusBadRequest, gin.H{
+			"message": "Failed to add to store, check id or json content.",
+			"status":  http.StatusBadRequest,
+		})
+
+		return
+	}
+
+	ctx.IndentedJSON(http.StatusOK, gin.H{
+		"message": "Object added successfully!",
+		"status":  http.StatusOK,
+	})
+
+	fmt.Println(store.Pool)
 }
