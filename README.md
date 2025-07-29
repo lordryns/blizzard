@@ -12,8 +12,8 @@ Input:
 Response:
 ```json
 {
-  "id": '...',
-  "message": '...',
+  "id": "...",
+  "message": "...",
   "status": 200
 }
 ```
