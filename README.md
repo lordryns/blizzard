@@ -48,14 +48,13 @@ id - */get?id=your_id*
 */get* returns every object in the store by default
 Optional ids:
 key - */get?id=your_id&key=your_key* 
-Returns an object with that key if it exists, else returns an empty map
+Returns an object with that key if it exists, else the key/value keys will be empty
 
 Response: 
 ```json
 {
-  "key": '...',
-  "value": '...',
   "message": '...',
-  "status": 200
+  "status": 200,
+  "objects": {"key": '...', "value": '...'}
 }
 ```

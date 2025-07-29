@@ -2,7 +2,6 @@ package controller
 
 import (
 	"blizzard/storage"
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 	"net/http"
@@ -75,5 +74,36 @@ func AddRoute(ctx *gin.Context) {
 		"status":  http.StatusOK,
 	})
 
-	fmt.Println(store.Pool)
+}
+
+func GetRoute(ctx *gin.Context) {
+	var id = ctx.Query("id")
+	var key = ctx.Query("key")
+
+	if len(id) < 1 {
+		ctx.IndentedJSON(http.StatusBadRequest, gin.H{
+			"message": "Please specify a store id! hint: /get?id=",
+			"status":  http.StatusBadRequest,
+		})
+
+		return
+	}
+
+	var resp, err = store.Get(id, key)
+	if err != nil {
+		ctx.IndentedJSON(http.StatusBadRequest, gin.H{
+			"message": "Store does not exist!",
+			"status":  http.StatusBadRequest,
+		})
+
+		return
+	}
+
+	print(resp)
+	ctx.IndentedJSON(http.StatusOK, gin.H{
+		"message": "Objects pulled successfully!",
+		"status":  http.StatusOK,
+		"objects": resp,
+	})
+
 }

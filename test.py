@@ -7,12 +7,19 @@ def create_store():
     query = requests.post(base_url + "/create_store")
     print(query.json())
 
-def add():
+def add(id: str):
     query = requests.post(base_url + "/add", json={
-        "id": "82e53cec-987e-43f2-994d-8db5e2ff35e5",
+        "id": id,
         "key": "age",
-        "value": "18"
+        "value": "19"
     })
     print(query.json())
 
-add()
+
+def get(id: str, key: str = ""):
+    formatted = f"&key={key}" if len(key) > 0 else ""
+    query = requests.get(base_url + f"/get?id={id}{formatted}")
+    print(query.json())
+
+
+get("b237c06d-f67a-460e-99de-b668f5fb74b1")

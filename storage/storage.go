@@ -1,13 +1,16 @@
 package storage
 
-import "fmt"
-import "sync"
+import (
+	"errors"
+	"fmt"
+	"sync"
+)
 
 var mutex sync.Mutex
 
 type StoreObject struct {
-	Key   string
-	Value string
+	Key   string `json:"key"`
+	Value string `json:"value"`
 }
 
 type UserStore struct {
@@ -48,4 +51,20 @@ func (storage *Storage) Add(id string, object StoreObject) bool {
 	userStore.Store[object.Key] = object
 	mutex.Unlock()
 	return true
+}
+
+func (storage *Storage) Get(id, key string) (map[string]StoreObject, error) {
+
+	var userStore, ok = storage.Pool[id]
+	if !ok {
+		return make(map[string]StoreObject), errors.New("Store does not exist!")
+	}
+
+	var userStoreList = make(map[string]StoreObject)
+	if len(key) > 0 {
+		userStoreList[key] = userStore.Store[key]
+		return userStoreList, nil
+	} else {
+		return userStore.Store, nil
+	}
 }
