@@ -2,7 +2,7 @@
 A lightweight cloud hosted key/value datastore
 
 **Routes**
-- [POST] /create_store - Use this create a new memory store
+-  **[POST] /create_store** - Use this create a new memory store
 
 Input:
 ```json
@@ -20,7 +20,7 @@ Response:
 
 Ensure to keep the id safe as you will only see it once and you cannot access the store without it.
 
-- [POST] /add
+- **[POST] /add**
 Takes an id, key and a value 
 
 Input:
@@ -41,7 +41,7 @@ Response:
 }
 ```
 
-- [ GET ] /get 
+- **[GET] /get**
 Takes one compulsory query
 id - /get?id=your_id
 
