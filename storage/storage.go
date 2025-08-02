@@ -35,7 +35,7 @@ func (storage *Storage) Create(id string) bool {
 	}
 
 	storage.Pool[id] = UserStore{Store: make(map[string]StoreObject)}
-	fmt.Println(storage)
+	fmt.Printf("Total stores: %v\n", len(storage.Pool))
 
 	mutex.Unlock()
 	return true
